@@ -1,30 +1,48 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div v-if="loading">App Loading...</div>
+  <div v-else>
+    <TheNavbar />
+    <div class="pt-14 px-3 font-display mx-auto max-w-screen-2xl">
+      <router-view />
+    </div>
   </div>
-  <router-view/>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import TheNavbar from "@/components/TheNavbar.vue";
+import { mapActions, mapMutations, mapState } from "vuex";
 
-#nav {
-  padding: 30px;
-}
+export default {
+  components: {
+    TheNavbar,
+  },
+  computed: {
+    ...mapState({
+      loading: (state) => state.auth.loading,
+      token: (state) => state.auth.token,
+    }),
+  },
+  methods: {
+    ...mapMutations("auth", ["setToken"]),
+    ...mapActions("auth", ["logout"]),
+  },
+  created() {
+    const authenticationToken = localStorage.getItem("token");
+    if (authenticationToken) {
+      this.setToken({ authenticationToken });
+    }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+    window.addEventListener("storage", () => {
+      const token = window.localStorage.getItem("token");
+      if (token && token !== this.token) {
+        this.setToken({ authenticationToken: token });
+        return;
+      }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+      if (!token && this.token !== null) {
+        this.logout();
+      }
+    });
+  },
+};
+</script>
