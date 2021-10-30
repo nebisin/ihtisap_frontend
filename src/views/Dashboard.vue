@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import DashboardNoAccount from "../components/DashboardNoAccount.vue";
 export default {
   components: { DashboardNoAccount },
@@ -19,10 +19,6 @@ export default {
       accountsLoading: (state) => state.account.loading,
       accounts: (state) => state.account.accounts,
     }),
-  },
-  methods: { ...mapActions("account", ["fetchAccounts"]) },
-  created() {
-    this.fetchAccounts();
   },
 };
 </script>

@@ -27,17 +27,17 @@
           ducimus porro vel numquam? Aspernatur, voluptate?</slot
         >
       </div>
-      <div class="py-2 px-3 flex justify-end gap-3">
-        <div>
+      <div class="py-2 px-3 flex gap-3">
+        <div class="flex-1">
           <slot name="secondary-button">
-            <button @click.prevent="$emit('close')">
+            <button @click.prevent="$emit('close')" class="w-full">
               <AppButtonSecondary>Close</AppButtonSecondary>
             </button>
           </slot>
         </div>
-        <div>
+        <div class="flex-1">
           <slot name="primary-button">
-            <button @click.prevent="$emit('submit')">
+            <button @click.prevent="$emit('submit')" class="w-full">
               <AppButtonPrimary>Submit</AppButtonPrimary>
             </button>
           </slot>
