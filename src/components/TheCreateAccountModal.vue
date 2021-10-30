@@ -17,7 +17,7 @@
         v-model:value="description"
       />
       <AppTextInput
-        label="currency"
+        label="Currency"
         id="currency"
         placeholder="currency"
         type="text"
