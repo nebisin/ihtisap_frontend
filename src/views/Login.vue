@@ -75,6 +75,8 @@ export default {
   methods: {
     ...mapMutations("auth", ["setToken"]),
     async handleSubmit() {
+      this.externalResults = {};
+
       const result = await this.v$.$validate();
       if (!result) {
         return;
