@@ -8,6 +8,15 @@ export const authPlugin = (store) => {
       }
 
       store.dispatch("auth/authenticate");
+      return;
+    }
+
+    if (mutation.type === "auth/setUser") {
+      if (mutation.payload.user) {
+        store.dispatch("account/fetchAccounts");
+      }
+
+      return;
     }
   });
 };

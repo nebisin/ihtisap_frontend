@@ -16,11 +16,9 @@ export default {
   mutations: {
     setAccounts(state, payload) {
       state.accounts = payload.accounts;
-      state.selectedAccount = payload.accounts[0] || null;
     },
     addAccount(state, payload) {
       state.accounts.unshift(payload.account);
-      state.selectedAccount = payload.account;
     },
     deleteAccount(state, payload) {
       state.accounts = state.accounts.filter(
@@ -50,6 +48,9 @@ export default {
     setError(state, payload) {
       state.error = payload.error;
     },
+    setSelectedAccount(state, payload) {
+      state.selectedAccount = payload.account;
+    },
   },
   actions: {
     async fetchAccounts({ commit, rootState }) {
@@ -68,6 +69,9 @@ export default {
         });
 
         commit("setAccounts", response.data);
+        commit("setSelectedAccount", {
+          account: response.data.accounts[0] || null,
+        });
       } catch (error) {
         if (error.response) {
           commit("setError", error.response.data);
@@ -77,6 +81,10 @@ export default {
       } finally {
         commit("toggleLoading");
       }
+    },
+    createAccount({ commit }, payload) {
+      commit("addAccount", payload);
+      commit("setSelectedAccount", payload);
     },
   },
 };
