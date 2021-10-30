@@ -7,11 +7,9 @@
       flex-col
       gap-3
       p-5
-      my-5
       border
       rounded
       shadow
-      bg-white
     "
   >
     <p class="text-normalGray font-normal text-lg">
@@ -23,6 +21,10 @@
     <teleport to="body">
       <transition name="fade" appear>
         <TheModal v-if="modalOpen" @close="modalOpen = false">
+          <template v-slot:body>
+            <AppTextInput label="title" id="title" placeholder="title" />
+            <AppTextInput label="title" id="title" placeholder="title" />
+          </template>
           <template v-slot:header>create new account</template>
         </TheModal>
       </transition>
@@ -32,9 +34,14 @@
 
 <script>
 import AppButtonPrimary from "./AppButtonPrimary.vue";
+import AppTextInput from "./AppTextInput.vue";
 import TheModal from "./TheModal.vue";
 export default {
-  components: { AppButtonPrimary, TheModal },
+  components: {
+    AppButtonPrimary,
+    TheModal,
+    AppTextInput,
+  },
   data() {
     return {
       modalOpen: false,

@@ -6,6 +6,7 @@ export default {
     accounts: [],
     loading: false,
     error: "",
+    selectedAccount: null,
   },
   getters: {
     isAccountsEmpty: (state) => {
@@ -15,14 +16,20 @@ export default {
   mutations: {
     setAccounts(state, payload) {
       state.accounts = payload.accounts;
+      state.selectedAccount = payload.accounts[0] || null;
     },
     addAccount(state, payload) {
       state.accounts.unshift(payload.account);
+      state.selectedAccount = payload.account;
     },
     deleteAccount(state, payload) {
       state.accounts = state.accounts.filter(
         (account) => account.id === payload.account.id
       );
+
+      if (state.selectedAccount === payload.account.id) {
+        state.selectedAccount = state.accounts[0] || null;
+      }
     },
     updateAccount(state, payload) {
       state.accounts = state.accounts.map((account) => {
@@ -32,6 +39,10 @@ export default {
 
         return account;
       });
+
+      if (state.selectedAccount === payload.account.id) {
+        state.selectedAccount = payload.account;
+      }
     },
     toggleLoading(state) {
       state.loading = !state.loading;

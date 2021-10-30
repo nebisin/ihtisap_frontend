@@ -1,8 +1,21 @@
 <template>
-  <div>
-    <div class="bg-white fixed top-14 z-20 m-4 rounded">
-      <div class="bg-gray-100 py-2 px-3 rounded-t border-b">
-        <h3 class="text-lg">
+  <div class="right-0 left-0 top-0 fixed">
+    <div
+      class="
+        absolute
+        mt-14
+        z-20
+        w-full
+        max-w-lg
+        left-1/2
+        transform
+        -translate-x-1/2
+        bg-gray-100
+        shadow-lg
+      "
+    >
+      <div class="bg-white py-2 px-3 border-b">
+        <h3 class="text-lg text-gray-500">
           <slot name="header">Custom Header</slot>
         </h3>
       </div>
@@ -32,7 +45,7 @@
       </div>
     </div>
     <div
-      class="fixed bg-black top-0 right-0 left-0 bottom-0 opacity-70 z-10"
+      class="fixed top-0 right-0 left-0 bottom-0 opacity-90 z-10 bg-gray-300"
       @click="$emit('close')"
     ></div>
   </div>
