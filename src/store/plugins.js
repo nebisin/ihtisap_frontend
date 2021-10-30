@@ -8,6 +8,7 @@ export const authPlugin = (store) => {
       }
 
       store.dispatch("auth/authenticate");
+      return;
     }
   });
 };

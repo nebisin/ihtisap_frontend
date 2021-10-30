@@ -1,9 +1,9 @@
 <template>
-  <div class="right-0 left-0 top-0 fixed">
+  <div>
     <div
       class="
-        absolute
-        mt-14
+        fixed
+        top-14
         z-20
         w-full
         max-w-lg

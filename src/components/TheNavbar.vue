@@ -12,7 +12,7 @@
   >
     <div
       class="
-        max-w-screen-2xl
+        max-w-screen-xl
         mx-auto
         w-full
         flex

@@ -2,7 +2,7 @@
   <div v-if="loading">App Loading...</div>
   <div v-else>
     <TheNavbar />
-    <div class="pt-14 px-3 font-display mx-auto max-w-screen-2xl">
+    <div class="pt-14 px-3 font-display mx-auto max-w-screen-xl">
       <router-view />
     </div>
   </div>
