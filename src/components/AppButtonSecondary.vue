@@ -1,0 +1,19 @@
+<template>
+  <div
+    class="
+      px-3
+      py-2
+      bg-normalGray
+      rounded-lg
+      hover:bg-darkGray
+      transition-colors
+      cursor-pointer
+      flex
+      items-center
+      justify-center
+      opacity-70
+    "
+  >
+    <p class="text-white text-center"><slot></slot></p>
+  </div>
+</template>
